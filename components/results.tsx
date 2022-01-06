@@ -1,21 +1,27 @@
 import {
     Box,
+    Button,
     Heading,
     HStack,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
     Table,
     Tbody,
     Td,
     Text,
     Th,
     Thead,
+    Tooltip,
     Tr,
     VStack,
 } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
+import { BsFillInfoCircleFill } from 'react-icons/bs'
 
 import { formatBytes } from '../utils/formatter'
 import { Result } from '../utils/types'
 import Icon from './icon'
+import Sample from './sample'
 
 interface DetailsProps {
     icons: Result[]
@@ -28,8 +34,36 @@ export default function Results({ icons }: DetailsProps) {
                 <Thead>
                     <Tr>
                         <Th>Name</Th>
-                        <Th>Sizes</Th>
-                        <Th>Colors</Th>
+                        <Th>
+                            <HStack gap={2} align="center">
+                                <Text>Sizes</Text>
+                                <Popover>
+                                    <PopoverTrigger>
+                                        <Box as="button">
+                                            <BsFillInfoCircleFill size={16} />
+                                        </Box>
+                                    </PopoverTrigger>
+                                    <PopoverContent>
+                                        <Sample size />
+                                    </PopoverContent>
+                                </Popover>
+                            </HStack>
+                        </Th>
+                        <Th>
+                            <HStack gap={2} align="center">
+                                <Text>Colors</Text>
+                                <Popover>
+                                    <PopoverTrigger>
+                                        <Box as="button">
+                                            <BsFillInfoCircleFill size={16} />
+                                        </Box>
+                                    </PopoverTrigger>
+                                    <PopoverContent>
+                                        <Sample color />
+                                    </PopoverContent>
+                                </Popover>
+                            </HStack>
+                        </Th>
                         <Th>File Size</Th>
                     </Tr>
                 </Thead>
